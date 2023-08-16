@@ -1,1 +1,34 @@
-<p>todo-list works!</p>
+<div class="card">
+  <h1 class="card-header">
+    liste des todo's <i class="bi bi-calendar-date-fill"></i>
+  </h1>
+</div>
+<div class="d-flex align-items-center mt-3 p-2">
+  <button (click)="onAddTodo()" class="col-2 d-block btn btn-outline-success">
+    <i class="bi bi-clipboard-plus"></i> Add todo
+  </button>
+  <div class="col-10 text-end">
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-outline-success">
+        Filter <i class="bi bi-search"></i>
+      </button>
+      <select class="ms-2 px-5 py-1 rounded-1 text-start">
+        <option value="All" selected>All</option>
+        <option value="Done">Done</option>
+        <option value="not done">not done</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="card my-2 p-2" *ngIf="addTodo">
+  <app-create-todo></app-create-todo>
+</div>
+
+<div *ngIf="todoList.length > 0; else nodata">
+  <div class="card my-2 p-2" *ngFor="let todo of todoList">
+    <app-one-todo [oneTodo]="todo"></app-one-todo>
+  </div>
+</div>
+<ng-template #nodata>
+  <h1 class="card p-3 mt-3">No todo to display</h1>
+</ng-template>

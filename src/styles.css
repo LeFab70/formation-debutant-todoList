@@ -9,3 +9,9 @@ body {
   box-sizing: border-box;
   background: #dddddd36;
 }
+.active {
+  color: rgb(12, 214, 49) !important;
+  font-weight: bolder !important;
+  transition: ease-in-out !important;
+  animation-duration: 0.2ms !important;
+}

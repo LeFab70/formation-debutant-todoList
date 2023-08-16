@@ -7,6 +7,9 @@ import { HeaderComponent } from './header/header.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { OneTodoComponent } from './one-todo/one-todo.component';
 import { CreateTodoComponent } from './create-todo/create-todo.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,13 +17,12 @@ import { CreateTodoComponent } from './create-todo/create-todo.component';
     HeaderComponent,
     TodoListComponent,
     OneTodoComponent,
-    CreateTodoComponent
+    CreateTodoComponent,
+    LandingPageComponent,
+    NotFoundPageComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
