@@ -1,51 +1,62 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">CreatedAt</th>
-      <th scope="col">Time</th>
-      <th scope="col">Done?</th>
-      <th scope="col">Note</th>
-      <th scope="col">Manager</th>
-      <th scope="col">Delete</th>
-      <th scope="col">Edit</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">{{ oneTodo.id }}</th>
-      <td [ngClass]="oneTodo.done ? 'text-decoration-line-through ' : ''">
-        {{ oneTodo.name }}
-      </td>
-      <td>{{ oneTodo.createdAt | date }}</td>
-      <td>{{ oneTodo.time | date : "shortTime" }}</td>
-      <td>
-        <button
-          (click)="onDoneTodo()"
-          class="rounded-1 "
-          [ngClass]="
-            oneTodo.done
-              ? 'text-success border-success border-2 '
-              : 'text-danger border-danger border-2'
-          "
-        >
-          <i
-            [ngClass]="oneTodo.done ? 'bi-check-circle-fill' : 'bi-toggle-off'"
-            class="bi p-2 fw-bolder"
-          ></i>
-        </button>
-      </td>
-      <td>{{ oneTodo.note }}</td>
-      <td>{{ oneTodo.groupManager }}</td>
-      <td>
-        <button class="rounded-1 border-danger border-2">
-          <i class="text-danger fw-bolder bi bi-trash"></i>
-        </button>
-      </td>
-      <td>
-        <button class="rounded-1"><i class="bi bi-pencil-square"></i></button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div *ngIf="(todoList$ | async) !== null; else nodata">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">CreatedAt</th>
+        <th scope="col">Time</th>
+        <th scope="col">Done?</th>
+        <th scope="col">Note</th>
+        <th scope="col">Manager</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let oneTodo of todoList$ | async">
+      <tr>
+        <th scope="row">{{ oneTodo.id }}</th>
+        <td [ngClass]="oneTodo.done ? 'text-decoration-line-through ' : ''">
+          {{ oneTodo.name }}
+        </td>
+        <td>{{ oneTodo.createdAt | date }}</td>
+        <td>{{ oneTodo.time }}</td>
+        <td>
+          <button
+            (click)="onDoneTodo(oneTodo)"
+            class="rounded-1"
+            [ngClass]="
+              oneTodo.done
+                ? 'text-success border-success border-2 '
+                : 'text-danger border-danger border-2'
+            "
+          >
+            <i
+              [ngClass]="
+                oneTodo.done ? 'bi-check-circle-fill' : 'bi-toggle-off'
+              "
+              class="bi p-2 fw-bolder"
+            ></i>
+          </button>
+        </td>
+        <td>{{ oneTodo.note }}</td>
+        <td>{{ oneTodo.groupManager }}</td>
+        <td>
+          <button
+            (click)="onDeleteTodo(oneTodo)"
+            class="rounded-1 border-danger border-2"
+          >
+            <i class="text-danger fw-bolder bi bi-trash"></i>
+          </button>
+        </td>
+        <td>
+          <button class="rounded-1"><i class="bi bi-pencil-square"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #nodata>
+  <h1 class="card p-3 mt-3">No todo to display</h1>
+</ng-template>

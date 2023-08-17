@@ -2,7 +2,7 @@ export class Todo {
   id!: number;
   name!: string;
   createdAt!: Date;
-  time!: number;
+  time!: string;
   done!: boolean;
   note?: string;
   groupManager?: string;

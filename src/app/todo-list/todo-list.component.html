@@ -12,10 +12,16 @@
       <button class="btn btn-outline-success">
         Filter <i class="bi bi-search"></i>
       </button>
-      <select class="ms-2 px-5 py-1 rounded-1 text-start">
-        <option value="All" selected>All</option>
+      <!-- <select
+        aria-label="Default select example"
+        [(ngModel)]="choiceFilter"
+        class="form-select ms-2 px-5 py-1 rounded-1 text-start"
+      > -->
+      <!--  -->
+      <select  class=" ms-2 px-5 rounded-2" [(ngModel)]="choiceFilter">
+        <option value ="All" selected>All</option>
         <option value="Done">Done</option>
-        <option value="not done">not done</option>
+        <option value="notdone">not done</option>
       </select>
     </div>
   </div>
@@ -24,11 +30,13 @@
   <app-create-todo></app-create-todo>
 </div>
 
-<div *ngIf="todoList.length > 0; else nodata">
-  <div class="card my-2 p-2" *ngFor="let todo of todoList">
-    <app-one-todo [oneTodo]="todo"></app-one-todo>
-  </div>
+<!-- <div *ngIf="todoList.length > 0; else nodata">
+  <div class="card my-2 p-2"> -->
+<app-one-todo [filter]="choiceFilter"></app-one-todo>
+
+<!-- <app-one-todo *ngFor="let todo of todoList" [oneTodo]="todo"></app-one-todo> -->
+<!-- </div>
 </div>
 <ng-template #nodata>
   <h1 class="card p-3 mt-3">No todo to display</h1>
-</ng-template>
+</ng-template> -->
